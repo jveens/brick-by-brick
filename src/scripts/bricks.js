@@ -1,6 +1,15 @@
 console.log('hi!');
 
+const grid = document.querySelector('#grid');
+const sliders = document.querySelectorAll('input[type="range"]');
+const gridSetup = document.querySelector('#grid-setup');
+const body = document.querySelector('body');
+
 const trigger = document.querySelector('[data-trigger-more]');
+
+let bricks = document.querySelector('#bricks').value;
+let cols = document.querySelector('#cols').value;
+let gutters = document.querySelector('#gutters').value;
 
 function getBlocks(number){
 	const parts = [
@@ -36,14 +45,18 @@ function getBlocks(number){
 	return blocks;
 }
 
-function brickster(number, columns, gridSelector) {
-
-	console.log('more');
+function brickster(number, columns, gutters, clear) {
 
 	var blocks = getBlocks(number);
-	var grid = document.querySelector(gridSelector);
 
+	if (clear) {
+		grid.innerHTML = '';
+	}
+	
 	grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+	grid.style.gridColumnGap = `${gutters}px`;
+	grid.style.gridRowGap = `${gutters}px`;
+	body.style.padding = `${gutters}px`;
 
 	blocks.forEach(block => {
 		const gridItem = document.createElement('div');
@@ -53,10 +66,30 @@ function brickster(number, columns, gridSelector) {
 	});
 }
 
+function updateValues(){
 
+	bricks = document.querySelector('#bricks').value;
+	cols = document.querySelector('#cols').value;
+	gutters = document.querySelector('#gutters').value;
 
-brickster(90, 8, '#grid');
+	const output = document.querySelector(`output[for="${this.id}"]`);
+	output.innerHTML = this.id === 'gutters' ? this.value + 'px' : this.value;
+}
+
+sliders.forEach(slide => {
+	slide.addEventListener('mousemove', updateValues);
+	slide.addEventListener('change', updateValues);
+});
+
+gridSetup.addEventListener('submit', function(event){
+	event.preventDefault();
+	console.log( bricks, cols, gutters );
+	brickster(bricks, cols, gutters, true);
+});
 
 trigger.addEventListener('click', function(event){
-	brickster( 30, 8, '#grid');
+	event.preventDefault();
+	brickster(bricks, cols, gutters, false);
 });
+
+brickster(bricks, cols, gutters, false);
