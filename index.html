@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Brickister.js</title>
+	<link rel="stylesheet" href="./public/styles/style.css">
+</head>
+<body>
+	<div id="grid">
+		
+	</div>
+	<script>
+		console.log('hi!');
+
+		function getBlocks(number){
+			const parts = [
+				{
+					width: 2,
+					height: 2,
+					className: 'two-two'
+				},
+				{
+					width: 1,
+					height: 1,
+					className: 'one-one'
+				},
+				{
+					width: 2,
+					height: 1,
+					className: 'two-one'
+				},
+				{
+					width: 1,
+					height: 2,
+					className: 'one-two'
+				}
+			];
+			const blocks = [];
+
+			for (let i = 0; i <= number; i++) {
+				let rand = Math.floor(Math.random()*parts.length);
+
+				blocks.push( parts[rand]);
+			}
+
+			return blocks;
+		}
+
+		function brickster(number, columns, gridSelector) {
+
+			var blocks = getBlocks(number);
+			var grid = document.querySelector(gridSelector);
+
+			blocks.forEach(block => {
+				const gridItem = document.createElement('div');
+				gridItem.classList.add(block.className, 'grid-item');
+
+				grid.appendChild(gridItem);
+			});
+		}
+
+		brickster(60, 3, '#grid');
+
+	</script>
+</body>
+</html>
