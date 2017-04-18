@@ -209,8 +209,8 @@ output {
   /* need to make these values dynamic so we can change col numbers */
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
-  -ms-grid-rows: 1fr;
-      grid-template-rows: 1fr;
+  -ms-grid-rows: (1fr)[10];
+      grid-template-rows: repeat(10, 1fr);
   grid-column-gap: 5px;
   grid-row-gap: 5px;
   -ms-grid-column-align: stretch;

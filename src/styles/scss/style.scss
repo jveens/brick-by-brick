@@ -90,7 +90,7 @@ output {
 	display: grid;
 	/* need to make these values dynamic so we can change col numbers */
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1fr;
+	grid-template-rows: repeat(10, 1fr);
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-items: stretch;
