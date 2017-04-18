@@ -5,24 +5,62 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+/* Colors */
+$red : #F87474;
+$pink : #F874D2;
+$purple : #9674F8;
+$blue : #74B6F8;
+$green : #74F8D1;
+$yellow : #F8F074;
+
+html {
+	font-size: 62.5%;
+}
+
 body {
 	margin: 0;
-	padding: 20px;
+	padding: 10px;
+	text-align: center;
 }
+
+.title-main {
+	text-align: center;
+	font-size: 4rem;
+	font-weight: 100;
+}
+
+.more-trigger {
+	padding: 20px;
+	text-transform: uppercase;
+	font-family: sans-serif;
+	-webkit-appearance: none;
+	border: 2px solid black;
+	font-size: 2rem;
+	background-color: white;
+	border-radius: 4px;
+	font-weight: bold;
+	margin: 40px auto;
+	transition: background-color 0.15s ease-in-out;
+
+	&:hover {
+		background-color: $purple;
+	}
+}
+
 #grid {
 	display: grid;
+	/* need to make these values dynamic so we can change col numbers */
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(10, calc(25vw - 20px));;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-template-rows: 1fr;
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
 	justify-items: stretch;
 	align-items: stretch;
-	width: calc(100vw - 40px);
+	width: 100%;
 	min-height: 100vh;
 	grid-auto-flow: dense;
 }
 .grid-item {
-	outline: 1px solid blue;
 
 	&:after {
 		content: '';
@@ -32,8 +70,9 @@ body {
 }
 
 .one-one {
-	background-color: red;
 	grid-area: span 1 / span 1;
+	background-color: $red;
+	background-image: linear-gradient(48deg, $red, $pink);
 
 	&:after {
 		padding-bottom: 100%;
@@ -43,6 +82,7 @@ body {
 .two-one {
 	background-color: green;
 	grid-area: span 2 / span 1;
+	background-image: linear-gradient(-110deg, $green, $yellow);
 
 	&:after {
 		padding-bottom: 200%;
@@ -52,15 +92,17 @@ body {
 .one-two {
 	background-color: orange;
 	grid-area: span 1 / span 2;
+	background-image: linear-gradient(-160deg, $blue, $purple);
 
 	&:after {
-		padding-bottom: 50%;
+		padding-bottom: calc(50% - 10px);
 	}
 }
 
 .two-two {
 	background-color: purple;
 	grid-area: span 2 / span 2;
+	background-image: linear-gradient(20deg, $purple, $pink);
 
 	&:after {
 		padding-bottom: 100%;

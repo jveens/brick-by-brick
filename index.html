@@ -6,61 +6,9 @@
 	<link rel="stylesheet" href="./public/styles/style.css">
 </head>
 <body>
-	<div id="grid">
-		
-	</div>
-	<script>
-		console.log('hi!');
-
-		function getBlocks(number){
-			const parts = [
-				{
-					width: 2,
-					height: 2,
-					className: 'two-two'
-				},
-				{
-					width: 1,
-					height: 1,
-					className: 'one-one'
-				},
-				{
-					width: 2,
-					height: 1,
-					className: 'two-one'
-				},
-				{
-					width: 1,
-					height: 2,
-					className: 'one-two'
-				}
-			];
-			const blocks = [];
-
-			for (let i = 0; i <= number; i++) {
-				let rand = Math.floor(Math.random()*parts.length);
-
-				blocks.push( parts[rand]);
-			}
-
-			return blocks;
-		}
-
-		function brickster(number, columns, gridSelector) {
-
-			var blocks = getBlocks(number);
-			var grid = document.querySelector(gridSelector);
-
-			blocks.forEach(block => {
-				const gridItem = document.createElement('div');
-				gridItem.classList.add(block.className, 'grid-item');
-
-				grid.appendChild(gridItem);
-			});
-		}
-
-		brickster(60, 3, '#grid');
-
-	</script>
+	<h1 class="title-main">Brick by Brick</h1>
+	<div id="grid"></div>
+	<button class="more-trigger" data-trigger-more>More Bricks!</button>
+	<script src="./public/scripts/brick.js" ></script>
 </body>
 </html>

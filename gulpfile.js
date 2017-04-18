@@ -6,6 +6,16 @@ const concat = require( 'gulp-concat' );
 const uglify = require( 'gulp-uglify' );
 const autoprefixer = require( 'gulp-autoprefixer' );
 
+gulp.task('scripts', () => {
+    return gulp.src('./src//**/*.js')
+        .on('error',notify.onError({
+            message: "Error: <%= error.message %>",
+            title: 'JS Error!!'
+        }))
+        .pipe(concat('brick.js'))
+        .pipe(gulp.dest('public/scripts'));
+});
+
 gulp.task('styles', () => {
     return gulp.src('./src/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
@@ -19,7 +29,8 @@ gulp.task('styles', () => {
 gulp.task( 'watch', function(){
 
 	gulp.watch( './src/styles/**/*.scss', [ 'styles' ]);
+	gulp.watch( './src/scripts/**/*.js', [ 'scripts' ]);
 
 });
 
-gulp.task('default', [ 'styles', 'watch' ] );
+gulp.task('default', [ 'scripts', 'styles', 'watch' ] );
